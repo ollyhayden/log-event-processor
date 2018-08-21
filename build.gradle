@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.3.RELEASE")
+    }
+}
+
+plugins {
+    id 'java'
+    id 'idea'
+    id "org.springframework.boot" version "2.0.4.RELEASE"
+    id "io.spring.dependency-management" version "1.0.6.RELEASE"
+
+    id 'application'
+}
+
+
+bootJar {
+    baseName = 'log-event-processor'
+    version =  '1.0'
+}
+
+bootRun {
+    // allows us to pass argument through to the spring boot app via gradle -Pargs= parameter
+    if (project.hasProperty('args')) {
+        args project.args.split(',')
+    }
+}
+
+dependencies {
+    compile 'com.google.guava:guava:23.0'
+    compile 'org.projectlombok:lombok:1.18.2'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.6'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.6'
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile 'org.hsqldb:hsqldb:2.4.1'
+
+    testCompile 'junit:junit:4.12'
+}
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    // Use jcenter for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+
+    maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/log-event-processor.iml" filepath="$PROJECT_DIR$/log-event-processor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/log-event-processor_main.iml" filepath="$PROJECT_DIR$/.idea/modules/log-event-processor_main.iml" group="log-event-processor" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/log-event-processor_test.iml" filepath="$PROJECT_DIR$/.idea/modules/log-event-processor_test.iml" group="log-event-processor" />
+    </modules>
+  </component>
+</project>
