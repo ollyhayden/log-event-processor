@@ -57,8 +57,13 @@ public class Application {
             logEventProcessor.processFileLines(stream);
         }
 
-        String timeTakenInSecs = new DecimalFormat("#,##0.##")
-                .format((System.currentTimeMillis() - startTime) / 1000f);
-        log.info(String.format("Processing took %ssecs", timeTakenInSecs));
+        log.info(String.format("Processing took %ssecs for %s events",
+                formatDecimal((System.currentTimeMillis() - startTime) / 1000f),
+                formatDecimal(logEventProcessor.getTotalNumberOfEvents())));
+    }
+
+    private static final DecimalFormat decimalFormatter = new DecimalFormat("#,##0.##");
+    private String formatDecimal(float value) {
+        return decimalFormatter.format(value);
     }
 }

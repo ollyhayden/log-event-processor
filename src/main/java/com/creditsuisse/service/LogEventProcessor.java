@@ -43,6 +43,10 @@ public class LogEventProcessor {
         processLogEvents(logEventStream);
     }
 
+    public long getTotalNumberOfEvents() {
+        return logEventRepository.count();
+    }
+
     private void processLogEvents(Stream<LogEventLine> logEventPairStream) {
         logEventPairStream
                 .collect(Collectors.groupingBy(LogEventLine::getId))
