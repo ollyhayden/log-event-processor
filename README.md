@@ -7,6 +7,12 @@ Parses and persists log event files into database
 ```
 ./gradlew bootRun -Pargs=<path to event log file>
 ```
+## Run tests
+* Run tests using
+```
+./gradlew test
+```
+* Test report is also viewable at **build/reports/tests/test/index.html**
 
 ## Demos
 * To test using sample files, try the following:
