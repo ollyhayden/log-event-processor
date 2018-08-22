@@ -105,5 +105,5 @@ fabric.properties
 .idea/httpRequests
 
 ###### APP IGNORE ######
-log-events.db*
+log-events-db*
 !src/test/resources/*
