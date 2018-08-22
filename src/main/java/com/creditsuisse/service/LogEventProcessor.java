@@ -59,8 +59,6 @@ public class LogEventProcessor {
                         log.warn(String.format("Expected 2 events for %s. Found %s, Skipping.", key, events.size()));
                     }
                 });
-
-        System.out.println(logEventRepository.findAll());
     }
 
     private Optional<LogEventLine> jsonToLogEvent(String logEventJson) {
