@@ -3,6 +3,7 @@ package com.creditsuisse.service;
 import com.creditsuisse.model.LogEventLine;
 import com.creditsuisse.model.LogEventPair;
 import com.creditsuisse.repository.LogEventRepository;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.slf4j.Logger;
@@ -23,7 +24,8 @@ public class LogEventProcessor {
 
     static {
         objectMapper = new ObjectMapper()
-                .registerModule(new JavaTimeModule()); // add module to manage long -> Instant
+                .registerModule(new JavaTimeModule()) // add module to manage long -> Instant
+                .configure(DeserializationFeature.READ_DATE_TIMESTAMPS_AS_NANOSECONDS, false ); // support MS timestamps
     }
 
     @Autowired
