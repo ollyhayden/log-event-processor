@@ -106,3 +106,4 @@ fabric.properties
 
 ###### APP IGNORE ######
 log-events.db*
+!src/test/resources/*
