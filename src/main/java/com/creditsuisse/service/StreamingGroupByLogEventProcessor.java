@@ -2,6 +2,7 @@ package com.creditsuisse.service;
 
 import com.creditsuisse.model.LogEventLine;
 import com.creditsuisse.model.LogEventPair;
+import com.creditsuisse.model.db.LogEvent;
 import com.creditsuisse.repository.LogEventRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +23,10 @@ public class StreamingGroupByLogEventProcessor extends LogEventProcessor {
     }
 
     public void processFileLines(Stream<String> logEventStringStream) {
+        log.info("Processing file lines using StreamingGroupByLogEventProcessor");
         Stream<LogEventLine> logEventStream =
                 logEventStringStream
+                        .parallel()
                         .map(this::jsonToLogEvent)
                         .filter(Optional::isPresent)
                         .map(Optional::get);
@@ -36,9 +39,14 @@ public class StreamingGroupByLogEventProcessor extends LogEventProcessor {
                 .collect(Collectors.groupingBy(LogEventLine::getId))
                 .forEach((key, events) -> {
                     if (events.size()==2) {
-                        logEventRepository.save(LogEventPair
+                        LogEvent logEvent = LogEventPair
                                 .createLogEventPair(events)
-                                .asLogEvent());
+                                .asLogEvent();
+                        logEventRepository.save(logEvent);
+
+                        if (log.isTraceEnabled()) {
+                            log.trace(String.format("Log event saved [%s]", logEvent));
+                        }
                     } else {
                         log.warn(String.format("Expected 2 events for %s. Found %s, Skipping.", key, events.size()));
                     }

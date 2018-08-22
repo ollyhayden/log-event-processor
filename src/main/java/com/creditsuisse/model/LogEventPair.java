@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 
 @Data
@@ -12,6 +13,10 @@ import java.util.List;
 public class LogEventPair {
     private LogEventLine startLogEvent;
     private LogEventLine finishLogEvent;
+
+    public static LogEventPair createLogEventPair(LogEventLine... logEvents) {
+        return createLogEventPair(Arrays.asList(logEvents));
+    }
 
     public static LogEventPair createLogEventPair(List<LogEventLine> logEvents) {
         if (logEvents != null && logEvents.size() != 2) {

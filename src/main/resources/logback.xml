@@ -5,12 +5,12 @@
         </encoder>
     </appender>
 
-    <!-- lets just see application output by default -->
-    <logger name="com.creditsuisse" additivity="false">
-        <appender-ref ref="STDOUT" />
-    </logger>
+    <!-- use this to just see application output -->
+    <!--<logger name="com.creditsuisse" additivity="false">-->
+        <!--<appender-ref ref="STDOUT" />-->
+    <!--</logger>-->
 
     <root level="info">
-        <!--<appender-ref ref="STDOUT" />-->
+        <appender-ref ref="STDOUT" />
     </root>
 </configuration>
