@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.util.stream.Stream;
 
 @SpringBootApplication
@@ -51,8 +52,13 @@ public class Application {
     }
 
     private void processLogFile(Path logFilePath) throws IOException {
+        long startTime = System.currentTimeMillis();
         try (Stream<String> stream = Files.lines(logFilePath)) {
             logEventProcessor.processFileLines(stream);
         }
+
+        String timeTakenInSecs = new DecimalFormat("#,##0.##")
+                .format((System.currentTimeMillis() - startTime) / 1000f);
+        log.info(String.format("Processing took %ssecs", timeTakenInSecs));
     }
 }
