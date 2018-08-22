@@ -68,7 +68,7 @@ public class TestDataGenerator {
             final String type = "APPLICATION_LOG";
             String host = RandomStringUtils.randomNumeric(8);
             startLogEventLine = new LogEventLine(randomId, LogEventLine.STATE_STARTED, now, type, host);
-            finishedLogEventLine = new LogEventLine(randomId, LogEventLine.STATE_FINISHED, now, type, host);
+            finishedLogEventLine = new LogEventLine(randomId, LogEventLine.STATE_FINISHED, now.plusMillis(RandomUtils.nextInt(1,10)), type, host);
         }
 
         if (RandomUtils.nextBoolean()) {
