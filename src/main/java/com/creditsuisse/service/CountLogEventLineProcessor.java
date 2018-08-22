@@ -10,20 +10,20 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
-public class StdoutLogEventProcessor extends LogEventProcessor {
-    private static final Logger log = LoggerFactory.getLogger(StdoutLogEventProcessor.class);
+public class CountLogEventLineProcessor extends LogEventProcessor {
+    private static final Logger log = LoggerFactory.getLogger(CountLogEventLineProcessor.class);
 
     @Autowired
-    public StdoutLogEventProcessor(LogEventRepository logEventRepository) {
+    public CountLogEventLineProcessor(LogEventRepository logEventRepository) {
         super(logEventRepository);
     }
 
     public void processFileLines(Stream<String> logEventStringStream) {
         log.info("Processing file lines using StdoutLogEventProcessor");
 
-        logEventStringStream
+        log.info(logEventStringStream
                 .map(this::jsonToLogEvent)
                 .filter(Optional::isPresent)
-                .map(Optional::get).forEach(l -> log.info(l.toString()));
+                .map(Optional::get).count() + " events converted to LogEventLine");
     }
 }
