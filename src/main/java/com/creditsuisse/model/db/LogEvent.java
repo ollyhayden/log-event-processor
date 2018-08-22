@@ -40,12 +40,12 @@ public class LogEvent {
 
     // use dummy setter as alert is derived from duration column
     public void setAlert(Boolean ignored) {
-        alert = duration > ALERT_DURATION_THRESHOLD_IN_MS;
+        // do nothing
     }
 
     public void setDuration(Long duration) {
         this.duration = duration;
 
-        setAlert(null);
+        alert = duration > ALERT_DURATION_THRESHOLD_IN_MS;
     }
 }

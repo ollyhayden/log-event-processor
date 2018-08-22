@@ -36,7 +36,7 @@ public class LogEventLine {
     }
 
     @JsonIgnore
-    public boolean isFinishedEvent() {
+    boolean isFinishedEvent() {
         return STATE_FINISHED.equals(state);
     }
 }
