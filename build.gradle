@@ -39,6 +39,7 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.8'
 
     testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-all:1.9.5'
 }
 
 // In this section you declare where to find the dependencies of your project
