@@ -2,6 +2,7 @@
 Parses and persists log event files into database
 
 ## How to run
+* Ensure you have a Java 8 JDK on your classpath or set JAVA_HOME to the installation
 * Clone the repo: https://github.com/ollyhayden/log-event-processor.git
 * Navigate to the log-event-processor directory and run:
 ```
