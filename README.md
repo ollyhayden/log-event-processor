@@ -68,5 +68,6 @@ CountLogEventLineProcessor just converts to LogEventLine and counts (no pairing 
 
 ## Observations
 * The HSQLDB database looks to be a bottleneck as N/2 events are written to it. Maybe we only care about persisting alerted events to reduce the data?
-* Reading from the single file input means we can really just process is a single stream. Potentially this could be broken and processed in distributed/parallel using Apache Hadoop or equivalent.
-* For production grade approach, we should consider injesting events using something like Kafka or Azure Event Hubs and reporting off them
+* Might be interesting to create a processor that uses HSQLDB driver directly (bypass Spring JPA) to write the records
+* Reading from the single file input means we can really just process is a single stream. Potentially this file could be broken up and processed in distributed/parallel using Apache Hadoop or equivalent.
+* For production grade approach, we should consider managing events using something like Kafka or Azure Event Hubs and reporting off them
