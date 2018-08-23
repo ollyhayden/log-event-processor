@@ -16,15 +16,15 @@ public class LogEvent {
     @Id
     private String id;
 
+    @Column(nullable = false)
     private Long duration;
 
     // application logs
-    @Nullable
     private String type;
-    @Nullable
     private String host;
 
     // TODO should we have a derived column in the database - perhaps a query on the events in DB to find what we need?
+    @Column(nullable = false)
     private Boolean alert;
 
     public LogEvent(String id,
